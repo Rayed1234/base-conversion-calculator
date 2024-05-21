@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Conversion Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body bgcolor= #ff9200>
+
+<div class="container">
+    <h2>Base Conversion Calculator</h2>
+    <label for="number">Number:</label>
+    <input type="text" id="number" placeholder="Enter number" required>
+    <label for="fromBase">From Base:</label>
+    <input type="number" id="fromBase" min="2" max="36" placeholder="Enter base (2-36)" required>
+    <label for="toBase">To Base:</label>
+    <input type="number" id="toBase" min="2" max="36" placeholder="Enter base (2-36)" required>
+    <button onclick="convertBase()">Convert</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    function convertBase() {
+        const number = document.getElementById('number').value;
+        const fromBase = parseInt(document.getElementById('fromBase').value);
+        const toBase = parseInt(document.getElementById('toBase').value);
+        
+        if (!number || isNaN(fromBase) || isNaN(toBase) || fromBase < 2 || fromBase > 36 || toBase < 2 || toBase > 36) {
+            alert('Please enter valid inputs.');
+            return;
+        }
+
+        try {
+            const base10Number = parseInt(number, fromBase);
+            const result = base10Number.toString(toBase).toUpperCase();
+            document.getElementById('result').innerText = `Result: ${result}`;
+        } catch (e) {
+            alert('Invalid number for the specified base.');
+        }
+    }
+</script>
+
+</body>
+</html>
